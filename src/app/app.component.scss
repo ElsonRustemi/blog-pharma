@@ -1,0 +1,24 @@
+/*img {
+  position: absolute;*/
+  /*left: 50%;*/
+  /*margin-top: 35px;
+  border-radius: 256px;
+  margin-right: 45px;
+}*/
+
+.back {
+  height: 400px;
+  width: 100%;
+  background-image: url("/assets/images/image2.jpg");
+  background-size: cover; /*Ensure the background image covers the entire div*/
+  background-position: center; /*Center the background image*/
+  background-repeat: no-repeat; /*Prevent the background image from repeating */
+  /*margin-top: 5px;*/
+  mix-blend-mode: multiply;
+}
+
+:host ::ng-deep .svg-inline--fa.fa-w-16 {
+  width: 3em;
+  height: 3em;
+  color: #40A2E3;
+}
