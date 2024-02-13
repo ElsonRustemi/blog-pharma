@@ -28,8 +28,38 @@
   </div>
 </div>
 
+<div class="grid align-items-center m-0 responsiveDisplay">
+  <div class="col">
+      <div class="flex justify-content-start ml-4">
+        <i class="pi pi-instagram" style="color: #40A2D8; font-size: 1.25rem; cursor: pointer;"></i>
+        <i class="pi pi-linkedin ml-6" style="color: #40A2D8; font-size: 1.25rem; cursor: pointer;"></i>
+        <i class="pi pi-youtube ml-6" style="color: #40A2D8; font-size: 1.25rem; cursor: pointer;"></i>
+      </div>
+  </div>
+  <div class="col">
+      <div class="flex justify-content-center">
+        <fa-icon [icon]="['fas', 'mortar-pestle']"></fa-icon>
+        <h2 class="ml-4" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #40A2E3; margin-top: 15px;"> Farma Care </h2>
+      </div>
+  </div>
+  <div class="col">
+      <div class=" flex justify-content-end mr-4">
+        <div>
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText placeholder="Search topic" [(ngModel)]="searchTopic" />
+          </span>
+          <!-- <fa-icon id="blogtest" class="blog" [size]="'xs'" [icon]="['fas', 'blog']"></fa-icon> -->
+          <!-- <span style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          font-size:larger;color:#40A2E3; margin-top: 5px; margin-left: 5px">Search topic</span> -->
+        </div>
 
-<div style="height:100px; display: flex; justify-content: space-between; margin-left: 30px; margin-right: 30px;">
+      </div>
+  </div>
+</div>
+
+
+<!-- <div style="height:100px; display: flex; justify-content: space-between; margin-left: 30px; margin-right: 30px;">
   <div class="mt-6">
     <i class="pi pi-instagram" style="color: #40A2D8; font-size: 1.25rem; cursor: pointer;"></i>
     <i class="pi pi-linkedin ml-6" style="color: #40A2D8; font-size: 1.25rem; cursor: pointer;"></i>
@@ -58,7 +88,7 @@
     <span class="fi fi-us" style="cursor: pointer; margin-bottom: 10px;"></span>
   </div>
 
-</div>
+</div> -->
 
 <div style="width: 100%; border-top: solid 1px #40A2E3;">
 

@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\assets",
-    "\\src\\assets\\images"
+    "\\src\\app"
   ],
-  "SelectedNode": "\\src\\assets\\photos.json",
+  "SelectedNode": "\\src\\assets",
   "PreviewInSolutionExplorer": false
 }

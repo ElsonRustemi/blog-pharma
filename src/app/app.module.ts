@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenubarModule } from 'primeng/menubar';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faMortarPestle } from '@fortawesome/free-solid-svg-icons';
+import { faBlog, faMortarPestle } from '@fortawesome/free-solid-svg-icons';
 import { GalleriaModule } from 'primeng/galleria';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +17,8 @@ import { PostsComponent } from './components/posts/posts.component';
 import { SkinCareComponent } from './components/skin-care/skin-care.component';
 import { ImmuneSystemComponent } from './components/immune-system/immune-system.component';
 import { AboutComponent } from './components/about/about.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { LatestPostsComponent } from './components/latest-posts/latest-posts.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AboutComponent } from './components/about/about.component';
     PostsComponent,
     SkinCareComponent,
     ImmuneSystemComponent,
-    AboutComponent
+    AboutComponent,
+    FooterComponent,
+    LatestPostsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,8 @@ import { AboutComponent } from './components/about/about.component';
 export class AppModule {
   constructor(library: FaIconLibrary) {
     library.addIcons(
-      faMortarPestle
+      faMortarPestle,
+      faBlog
     );
   }
 }

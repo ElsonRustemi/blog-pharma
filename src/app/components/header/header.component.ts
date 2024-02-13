@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit {
   quote: string;
   searchTopic: string;
 
+
+
   constructor() { }
 
   ngOnInit(): void {
