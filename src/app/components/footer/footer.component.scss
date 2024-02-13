@@ -1,0 +1,10 @@
+.footer{
+  flex-shrink: 0;
+  flex-grow: 0;
+  background: #40A2D8;
+  padding: 35px 15px;
+}
+
+:host ::ng-deep .svg-inline--fa.fa-w-16 {
+  color: white;
+}

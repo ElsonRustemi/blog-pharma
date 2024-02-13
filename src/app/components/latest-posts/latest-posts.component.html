@@ -1,3 +1,15 @@
-<div>
-
+<div class="flex justify-content-center">
+  <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: unset;">Latest Posts</h1>
+</div>
+<div class="grid">
+  <div class="col flex justify-content-center" *ngFor="let post of latestPost" style="cursor: pointer;">
+    <p-card header="{{post.header}}" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+      <!-- <ng-template pTemplate="header">
+        <img alt="Card" src="assets/showcase/images/usercard.png">
+      </ng-template> -->
+      <p>
+        {{post.content}}
+      </p>
+    </p-card>
+  </div>
 </div>

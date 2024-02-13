@@ -11,6 +11,11 @@ import { GalleriaModule } from 'primeng/galleria';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
+import {CardModule} from 'primeng/card';
+import {DividerModule} from 'primeng/divider';
+
+
+
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PostsComponent } from './components/posts/posts.component';
@@ -42,6 +47,8 @@ import { LatestPostsComponent } from './components/latest-posts/latest-posts.com
     HttpClientModule,
     FormsModule,
     InputTextModule,
+    CardModule,
+    DividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
