@@ -24,6 +24,8 @@ import { ImmuneSystemComponent } from './components/immune-system/immune-system.
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LatestPostsComponent } from './components/latest-posts/latest-posts.component';
+import { HomeComponent } from './components/home/home.component';
+import { NewsComponent } from './components/news/news.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { LatestPostsComponent } from './components/latest-posts/latest-posts.com
     ImmuneSystemComponent,
     AboutComponent,
     FooterComponent,
-    LatestPostsComponent
+    LatestPostsComponent,
+    HomeComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,

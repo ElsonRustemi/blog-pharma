@@ -56,22 +56,32 @@ export class HeaderComponent implements OnInit {
     this.items = [
       {
         label: 'Home',
+        routerLink: ['/home']
       },
       {
         label: 'Posts',
+        routerLink: ['/posts']
       },
       {
         label: 'News',
+        routerLink: ['/news']
       },
       {
         label: 'Consulting',
         items: [
-          { label: 'Skin care' },
-          { label: 'Imun System' }
+          {
+            label: 'Skin care',
+            routerLink: ['/skin-care']
+          },
+          {
+            label: 'Immun System',
+            routerLink: ['/immune-system']
+          }
         ]
       },
       {
-        label: 'About'
+        label: 'About',
+        routerLink: ['/about']
       },
     ];
 
