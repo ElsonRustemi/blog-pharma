@@ -1,0 +1,20 @@
+.grid {
+  margin: 0;
+}
+
+.separated-line {
+  width: 50%;
+  text-align: center;
+  border-bottom: 2px solid #40A2D8;
+  line-height: 0.1em;
+  margin: 45px 0 45px;
+  z-index: -9999;
+}
+
+.separated-line span {
+  background: #fff;
+  color: #40A2D8;
+  padding: 0 150px;
+}
+
+

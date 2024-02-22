@@ -6,14 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenubarModule } from 'primeng/menubar';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBlog, faMortarPestle } from '@fortawesome/free-solid-svg-icons';
+import { faBlog, faMortarPestle, faRunning } from '@fortawesome/free-solid-svg-icons';
 import { GalleriaModule } from 'primeng/galleria';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
 import {CardModule} from 'primeng/card';
 import {DividerModule} from 'primeng/divider';
-
+import {PanelMenuModule} from 'primeng/panelmenu';
 
 
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
@@ -53,6 +53,7 @@ import { NewsComponent } from './components/news/news.component';
     InputTextModule,
     CardModule,
     DividerModule,
+    PanelMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -61,7 +62,8 @@ export class AppModule {
   constructor(library: FaIconLibrary) {
     library.addIcons(
       faMortarPestle,
-      faBlog
+      faBlog,
+      faRunning
     );
   }
 }
