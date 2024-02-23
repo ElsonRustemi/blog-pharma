@@ -1,1 +1,32 @@
 <app-header></app-header>
+
+<!-- <div class="col-10">
+  <div class="grid"> -->
+<!-- class="col flex justify-content-center" -->
+
+<div class="flex justify-content-center">
+  <h1 class="separated-line" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: unset;">
+    <span>News</span>
+  </h1>
+</div>
+
+<div class="grid">
+  <div class="col" *ngFor="let healthNews of healthNewsArr">
+      <div class="text-center p-3 border-round-sm flex justify-content-center">
+        <p-card header="{{healthNews.title}}" subheader="Author: {{healthNews.author}}"
+        [style]="{width: '360px'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="header">
+          <img alt="Card" src="{{healthNews.urlToImage ? healthNews.urlToImage : 'assets/images/image1.jpg'}}" width="300" height="300">
+        </ng-template>
+        <p>{{healthNews.content | truncate:300}} <a href="{{healthNews.url}}" target="_blank">Go to link</a></p>
+        <!-- <ng-template pTemplate="footer">
+          <p-button label="Save" icon="pi pi-check"></p-button>
+          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
+            [style]="{'margin-left': '.5em'}"></p-button>
+        </ng-template> -->
+      </p-card>
+      </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

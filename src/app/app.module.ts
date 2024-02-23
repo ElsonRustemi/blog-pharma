@@ -26,6 +26,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LatestPostsComponent } from './components/latest-posts/latest-posts.component';
 import { HomeComponent } from './components/home/home.component';
 import { NewsComponent } from './components/news/news.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NewsComponent } from './components/news/news.component';
     FooterComponent,
     LatestPostsComponent,
     HomeComponent,
-    NewsComponent
+    NewsComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
