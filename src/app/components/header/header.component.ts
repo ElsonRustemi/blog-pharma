@@ -74,7 +74,7 @@ export class HeaderComponent implements OnInit {
             routerLink: ['/skin-care']
           },
           {
-            label: 'Immun System',
+            label: 'Immune System',
             routerLink: ['/immune-system']
           }
         ]

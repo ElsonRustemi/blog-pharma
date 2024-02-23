@@ -3,14 +3,22 @@
   height: 50px
 }
 
+.rightMargin {
+  margin-right: 1.5rem;
+}
+
 @media only screen and (max-width: 708px) {
-  .responsiveDisplay {
+  .responsiveDisplayHeader {
     display: block;
   }
 
   .centerItem {
     display: flex;
     justify-content: center;
+  }
+
+  .rightMargin {
+    margin-left: 1.5rem;
   }
 }
 

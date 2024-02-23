@@ -1,0 +1,33 @@
+.grid {
+  margin: 0;
+}
+
+// .separated-line {
+//   width: 50%;
+//   text-align: center;
+//   border-bottom: 2px solid #40A2D8;
+//   line-height: 0.1em;
+//   margin: 45px 0 45px;
+//   z-index: -9999;
+//   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+//   font-weight: unset;
+// }
+
+// .separated-line span {
+//   background: #fff;
+//   color: #40A2D8;
+//   padding: 0 150px;
+// }
+
+.responsiveDisplay {
+  display: flex;
+  justify-content: center;
+}
+
+
+@media only screen and (max-width: 760px) {
+  .responsiveDisplay {
+    display: grid;
+    justify-content: center;
+  }
+}
