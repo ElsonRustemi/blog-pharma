@@ -6,6 +6,7 @@ import { PostsComponent } from './components/posts/posts.component';
 import { NewsComponent } from './components/news/news.component';
 import { SkinCareComponent } from './components/skin-care/skin-care.component';
 import { ImmuneSystemComponent } from './components/immune-system/immune-system.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +16,8 @@ const routes: Routes = [
   { path: 'skin-care', component: SkinCareComponent },
   { path: 'immune-system', component: ImmuneSystemComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'create-posts', component: CreatePostComponent },
+
 ];
 
 @NgModule({

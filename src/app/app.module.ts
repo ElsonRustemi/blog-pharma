@@ -8,12 +8,14 @@ import { MenubarModule } from 'primeng/menubar';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBlog, faMortarPestle, faRunning } from '@fortawesome/free-solid-svg-icons';
 import { GalleriaModule } from 'primeng/galleria';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext';
 import {CardModule} from 'primeng/card';
 import {DividerModule} from 'primeng/divider';
 import {PanelMenuModule} from 'primeng/panelmenu';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {FileUploadModule} from 'primeng/fileupload';
 
 
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
@@ -27,6 +29,7 @@ import { LatestPostsComponent } from './components/latest-posts/latest-posts.com
 import { HomeComponent } from './components/home/home.component';
 import { NewsComponent } from './components/news/news.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { CreatePostComponent } from './components/create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     LatestPostsComponent,
     HomeComponent,
     NewsComponent,
-    TruncatePipe
+    TruncatePipe,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,10 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     InputTextModule,
     CardModule,
     DividerModule,
-    PanelMenuModule
+    PanelMenuModule,
+    InputTextareaModule,
+    FileUploadModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
