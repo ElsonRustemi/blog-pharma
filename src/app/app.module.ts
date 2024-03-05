@@ -16,6 +16,7 @@ import {DividerModule} from 'primeng/divider';
 import {PanelMenuModule} from 'primeng/panelmenu';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {FileUploadModule} from 'primeng/fileupload';
+import {ToastModule} from 'primeng/toast';
 
 
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
@@ -30,6 +31,8 @@ import { HomeComponent } from './components/home/home.component';
 import { NewsComponent } from './components/news/news.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { CreatePostComponent } from './components/create-post/create-post.component';
+import { LoginComponent } from './components/login/login.component';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
     HomeComponent,
     NewsComponent,
     TruncatePipe,
-    CreatePostComponent
+    CreatePostComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +66,10 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
     PanelMenuModule,
     InputTextareaModule,
     FileUploadModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

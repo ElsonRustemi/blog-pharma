@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-posts',
@@ -9,11 +10,21 @@ import { MenuItem } from 'primeng/api';
 export class PostsComponent implements OnInit {
 
   posts: any[] = [];
+  postsBe: any[] = [];
+
   items: MenuItem[];
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+
+    this.apiService.getAllPosts().subscribe((posts) => {
+      this.postsBe = posts;
+      console.log(this.postsBe);
+
+    });
+
+
     this.posts = [
       { header: 'Post 1', content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!" },
       { header: 'Post 2', content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!" },

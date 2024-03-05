@@ -23,6 +23,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "flag-icons": "^7.1.0",
+    "jwt-decode": "^3.1.2",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primeng": "^11.2.1",
