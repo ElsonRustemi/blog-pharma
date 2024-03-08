@@ -14,21 +14,13 @@
 <form action="" [formGroup]="postForm" style="margin-top: 35px;" (ngSubmit)="postForm.value">
 <div class="formgrid grid">
     <div class="field col-12 md:col-6">
-      <!-- <label for="firstname6"
-        style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: unset;">Title</label> -->
       <input pInputText id="firstname6" type="text" class="w-full" placeholder="Add title" formControlName="title">
     </div>
     <div class="field col-12 md:col-6">
-      <!-- <label for="city"
-        style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: unset;">Image</label> -->
-      <!-- <p-fileUpload mode="basic" name="demo[]" accept="image/*" maxFileSize="1000000"
-        [auto]="true" chooseLabel="Browse" (onSelect)="onBasicUploadAuto($event)"></p-fileUpload> -->
 
-        <input type="file" class="form-control" id="UploadimgControlInput" formControlName="image" name="image" (change)="uploadImage($event)" placeholder="Upload Image">
+        <input type="file" (change)="uploadFile($event.target.files[0])">
     </div>
     <div class="field col-12">
-      <!-- <label for="address"
-        style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: unset;">Content</label> -->
       <textarea pInputTextarea id="address" type="text" rows="4" class="w-full" placeholder="Add content" formControlName="content"></textarea>
     </div>
   </div>

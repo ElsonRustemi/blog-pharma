@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -7,22 +9,26 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss']
 })
-export class PostsComponent implements OnInit {
+export class PostsComponent implements OnInit, OnDestroy {
 
   posts: any[] = [];
   postsBe: any[] = [];
 
   items: MenuItem[];
+  sub$: Subject<any> = new Subject();
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
 
-    this.apiService.getAllPosts().subscribe((posts) => {
-      this.postsBe = posts;
-      console.log(this.postsBe);
+    this.apiService.getAllPosts().pipe(
+      takeUntil(this.sub$)
+    ).subscribe(res => this.postsBe = res);
 
-    });
+    // this.apiService.getAllPosts().subscribe((posts) => {
+    //   this.postsBe = posts;
+    //   console.log(this.postsBe);
+    // });
 
 
     this.posts = [
@@ -51,6 +57,11 @@ export class PostsComponent implements OnInit {
           // icon: 'pi pi-fw pi-cog',
       }
   ];
+  }
+
+  ngOnDestroy(): void {
+    this.sub$.next();
+    this.sub$.complete();
   }
 
 }

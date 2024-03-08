@@ -76,23 +76,40 @@ export class ApiService {
     return "";
   }
 
+  // /**
+  //  * Create post method
+  //  * @param title
+  //  * @param content
+  //  * @param imagePath
+  //  * @returns
+  //  */
+  // createPost(title: string, content: string, imagePath: string) {
+  //   return this.http.post(`${this.API_URL}/posts`,
+  //     { title, content, imagePath },
+  //     {
+  //       headers: {
+  //         Authorization: `Bearer ${this.token}`
+  //       }
+  //     }
+  //   )
+  // }
+
   /**
    * Create post method
-   * @param title
-   * @param content
-   * @param imagePath
+   * @param formData
    * @returns
    */
-  createPost(title: string, content: string, imagePath: string) {
-    return this.http.post(`${this.API_URL}/posts`,
-      { title, content, imagePath },
-      {
-        headers: {
-          Authorization: `Bearer ${this.token}`
-        }
-      }
-    )
+  createPost(formData: any) {
+    return this.http.post(`${this.API_URL}/posts`, formData);
   }
+
+  getImageUrl()  {
+    return `${this.API_URL}/posts/upload-photo`; // Update the URL based on your backend
+  }
+
+  // http://localhost:3000/posts/upload-photo
+
+
 
   // /**
   //  * Deletes post

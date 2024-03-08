@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
@@ -10,8 +11,9 @@ import { ApiService } from 'src/app/services/api.service';
 export class CreatePostComponent implements OnInit {
 
   postForm: FormGroup;
+  img: any;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) {
+  constructor(private fb: FormBuilder, private apiService: ApiService, private http: HttpClient) {
     this.postForm = this.fb.group({
       title: [],
       content: [],
@@ -24,27 +26,63 @@ export class CreatePostComponent implements OnInit {
 
   onBasicUploadAuto(event) {
     console.log(event);
-    // if (event && event.currentFiles && event.currentFiles.length > 0) {
-    //   const file = event.currentFiles[0]; // Get the first file from currentFiles array
-    //   const objectURL = file.objectURL?.changingThisBreaksApplicationSecurity; // Extract the objectURL
-    //   // const objectURL = file.name;
-    //   if (objectURL) {
-    //     this.postForm.get('image').setValue(objectURL); // Set the image control value with the objectURL
-    //   }
-    // }
+    if (event && event.currentFiles && event.currentFiles.length > 0) {
+      const file = event.currentFiles[0]; // Get the first file from currentFiles array
+      const objectURL = file.objectURL?.changingThisBreaksApplicationSecurity; // Extract the objectURL
+      // const objectURL = file.name;
+      if (objectURL) {
+        this.postForm.get('image').setValue(objectURL); // Set the image control value with the objectURL
+      }
+    }
+  }
+
+  /**
+   *
+   * @param file
+   */
+  uploadFile(file: File) {
+
+    const formData = new FormData();
+
+    const blob = new Blob([file], { type: file.type });
+    formData.append('file', blob, file.name);
+
+    const headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+
+    this.http.post('http://localhost:3000/posts/upload-photo', formData, { headers })
+      .subscribe(
+        (response) => {
+          console.log('File uploaded successfully:', response);
+          this.img = response;
+          console.log(this.img);
+
+          // Handle the response from the server
+        },
+        (error) => {
+          console.error('File upload failed:', error);
+          // Handle the error
+        }
+      );
 
   }
 
-  uploadImage(event) {
-    const file = event.target.files[0];
-    console.log(file);
-  }
 
+  /**
+   *
+   * @param value
+   */
   onSubmitPost(value) {
-    console.log(value);
-    // this.apiService.createPost(value.title, value.content, value.image).subscribe( (result) => {
-    //   console.log(result);
-    // });
+
+    const body = {
+      title: value.title,
+      content: value.content,
+      imagePath: this.img.filePath
+    }
+
+    this.apiService.createPost(body).subscribe((result) => {
+      console.log(result);
+    });
   }
 
 }
