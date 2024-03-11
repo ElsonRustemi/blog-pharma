@@ -33,6 +33,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { LoginComponent } from './components/login/login.component';
 import { MessageService } from 'primeng/api';
+import { SinglePostComponent } from './components/single-post/single-post.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { MessageService } from 'primeng/api';
     NewsComponent,
     TruncatePipe,
     CreatePostComponent,
-    LoginComponent
+    LoginComponent,
+    SinglePostComponent
   ],
   imports: [
     BrowserModule,

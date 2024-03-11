@@ -9,6 +9,7 @@ import { ImmuneSystemComponent } from './components/immune-system/immune-system.
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { SinglePostComponent } from './components/single-post/single-post.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,9 +19,11 @@ const routes: Routes = [
   { path: 'skin-care', component: SkinCareComponent },
   { path: 'immune-system', component: ImmuneSystemComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'create-posts', component: CreatePostComponent },
+  { path: 'create-posts', component: CreatePostComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   // , canActivate: [AuthGuard]
+  { path: 'signlePost', component: SinglePostComponent },
+
 ];
 
 @NgModule({

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class CreatePostComponent implements OnInit {
   postForm: FormGroup;
   img: any;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private apiService: ApiService, private http: HttpClient, private messageService: MessageService) {
     this.postForm = this.fb.group({
       title: [],
       content: [],
@@ -81,6 +82,10 @@ export class CreatePostComponent implements OnInit {
     }
 
     this.apiService.createPost(body).subscribe((result) => {
+      if (result) {
+        this.messageService.add({key: 'myKey1', severity:'success', summary: 'Success', detail: 'Post created successfully'});
+        this.postForm.reset();
+      }
       console.log(result);
     });
   }

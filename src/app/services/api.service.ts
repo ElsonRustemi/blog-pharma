@@ -12,7 +12,10 @@ export class ApiService {
 
   private token: string = "";
   private jtwToken$ = new BehaviorSubject<string>(this.token);
-  private API_URL = 'http://localhost:3000'
+  private API_URL = 'http://localhost:3000';
+
+  private singlePost = new BehaviorSubject("");
+  getSinglePostObject = this.singlePost.asObservable();
 
   constructor(private http: HttpClient, private router: Router, private messageService: MessageService) {
       const fetchedToken: string = localStorage.getItem("act");
@@ -45,6 +48,19 @@ export class ApiService {
   }
 
   /**
+   *
+   * @param id
+   * @returns
+   */
+  getSinglePost(id: number): Observable<any> {
+    return this.http.get(`${this.API_URL}/posts/${id}`)
+  }
+
+  setPostBody(singlePost: any) {
+    this.singlePost.next(singlePost);
+  }
+
+  /**
    * Logs user in create post
    * @param username
    * @param password
@@ -57,9 +73,11 @@ export class ApiService {
       if (this.token) {
         this.messageService.add({severity:'success', summary: 'Success', detail: 'Login successful'});
       }
+      console.log(this.token);
+
       this.jtwToken$.next(this.token);
       localStorage.setItem("act", btoa(this.token));
-      this.router.navigateByUrl('/create-posts').then();
+      this.router.navigateByUrl('/create-posts');
     }, (err: HttpErrorResponse) => console.log(err.message));
   }
 
