@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-header',
@@ -13,12 +14,22 @@ export class HeaderComponent implements OnInit {
   items: MenuItem[];
   quote: string;
   searchTopic: string;
+  displayLogout: boolean;
 
 
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
+
+    const token = localStorage.getItem('act');
+
+    if (token !== null && token.length !== 0) {
+      this.displayLogout = true;
+    } else {
+      this.displayLogout = false;
+    }
+
 
     this.quote = `Wellness is the complete integration of body, mind,
     and spirit – the realization that everything we do, think,
@@ -86,6 +97,11 @@ export class HeaderComponent implements OnInit {
     ];
 
 
+  }
+
+  logout() {
+    this.apiService.logout();
+    this.displayLogout = false;
   }
 
 }

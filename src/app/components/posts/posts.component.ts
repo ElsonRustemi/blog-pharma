@@ -21,12 +21,19 @@ export class PostsComponent implements OnInit, OnDestroy {
   items: MenuItem[];
   sub$: Subject<any> = new Subject();
   singlePost$: Subject<any> = new Subject();
+  private tokenExpirationSubscription: Subscription;
+  checkTokenForAdmin: boolean;
 
   constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
 
     this.getAllPosts();
+    this.tokenHasExpired();
+
+    if (localStorage.getItem('act').length) {
+      this.checkTokenForAdmin = true;
+    }
 
     this.posts = [
       { header: 'Post 1', content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!" },
@@ -62,7 +69,6 @@ export class PostsComponent implements OnInit, OnDestroy {
    * @param id
    */
   getSinglePost(id) {
-
     this.apiService.getSinglePost(id).pipe(
       takeUntil(this.singlePost$)
     ).subscribe(result => {
@@ -119,6 +125,26 @@ export class PostsComponent implements OnInit, OnDestroy {
       pageArray.push(i);
     }
     return pageArray;
+  }
+
+  tokenHasExpired() {
+    this.tokenExpirationSubscription = this.apiService.getTokenRemainingTime().subscribe(
+      (remainingTime) => {
+
+        // Update UI or perform actions based on the remaining time
+        console.log(`Token expires in ${remainingTime / 1000} seconds`);
+
+        if (remainingTime <= 0) {
+          // Token has expired, perform necessary actions
+          console.log('Token has expired');
+          this.apiService.logout();
+          this.checkTokenForAdmin = false;
+        }
+      },
+      (error) => {
+        console.error('Error checking token expiration:', error);
+      }
+    );
   }
 
   /**

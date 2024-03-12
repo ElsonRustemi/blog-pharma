@@ -2,8 +2,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { BehaviorSubject, Observable } from 'rxjs';
-// import { tap } from 'rxjs/operators'
+import { BehaviorSubject, Observable, interval } from 'rxjs';
+import jwtDecode from 'jwt-decode';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,14 @@ export class ApiService {
   getSinglePostObject = this.singlePost.asObservable();
 
   constructor(private http: HttpClient, private router: Router, private messageService: MessageService) {
-      const fetchedToken: string = localStorage.getItem("act");
+    const fetchedToken: string = localStorage.getItem("act");
 
-      if(fetchedToken) {
-        this.token = atob(fetchedToken);
-        this.jtwToken$.next(this.token);
-      }
-
+    if (fetchedToken) {
+      this.token = fetchedToken;
+      this.jtwToken$.next(this.token);
     }
+
+  }
 
   /**
    *
@@ -67,18 +68,18 @@ export class ApiService {
    */
   login(username: string, password: string) {
     this.http.post(`${this.API_URL}/auth/login`, { username, password })
-    .subscribe((res: {token: string}) => {
-      this.token = res.token;
+      .subscribe((res: { token: string }) => {
+        this.token = res.token;
 
-      if (this.token) {
-        this.messageService.add({severity:'success', summary: 'Success', detail: 'Login successful'});
-      }
-      console.log(this.token);
+        if (this.token) {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successful' });
+        }
+        console.log(this.token);
 
-      this.jtwToken$.next(this.token);
-      localStorage.setItem("act", btoa(this.token));
-      this.router.navigateByUrl('/create-posts');
-    }, (err: HttpErrorResponse) => console.log(err.message));
+        this.jtwToken$.next(this.token);
+        localStorage.setItem("act", this.token);
+        this.router.navigateByUrl('/create-posts');
+      }, (err: HttpErrorResponse) => console.log(err.message));
   }
 
   /**
@@ -88,29 +89,32 @@ export class ApiService {
   logout() {
     this.token = "";
     this.jtwToken$.next(this.token);
-    this.messageService.add({severity:'success', summary: 'Success', detail: 'Logout was successful'});
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Logout was successful' });
     localStorage.removeItem("act");
-    this.router.navigateByUrl("/login").then();
+    this.router.navigateByUrl("/home").then();
     return "";
   }
 
-  // /**
-  //  * Create post method
-  //  * @param title
-  //  * @param content
-  //  * @param imagePath
-  //  * @returns
-  //  */
-  // createPost(title: string, content: string, imagePath: string) {
-  //   return this.http.post(`${this.API_URL}/posts`,
-  //     { title, content, imagePath },
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${this.token}`
-  //       }
-  //     }
-  //   )
-  // }
+  checkTokenOfUser() {
+    const token = localStorage.getItem('act');
+    const decoded = jwtDecode(token);
+    return decoded['exp']
+  }
+
+  getTokenRemainingTime(): Observable<number> {
+    const token = localStorage.getItem('act');
+    const decoded = jwtDecode<{ exp: number }>(token);
+    const expirationTime = decoded.exp * 1000; // Convert from seconds to milliseconds
+    const now = new Date().getTime();
+    const remainingTime = expirationTime - now;
+
+    return interval(1000).pipe(
+      map(() => {
+        const currentTime = new Date().getTime();
+        return expirationTime - currentTime;
+      })
+    );
+  }
 
   /**
    * Create post method
@@ -121,32 +125,8 @@ export class ApiService {
     return this.http.post(`${this.API_URL}/posts`, formData);
   }
 
-  getImageUrl()  {
+  getImageUrl() {
     return `${this.API_URL}/posts/upload-photo`; // Update the URL based on your backend
   }
-
-  // http://localhost:3000/posts/upload-photo
-
-
-
-  // /**
-  //  * Deletes post
-  //  * @param postId
-  //  */
-  // deletePost(postId: number) {
-  //   this.http.delete(`${this.API_URL}/posts/${postId}`,
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${this.token}`
-  //       }
-  //     }).pipe(
-  //       tap((res) => {
-  //         if (res) {
-  //           this.messageService.add({severity:'success', summary: 'Success', detail: 'Post deleted successfully'});
-  //         }
-  //       })
-  //     )
-  // }
-
 
 }

@@ -27,6 +27,11 @@
             <img alt="Card" [src]="post.imagePath">
           </ng-template>
           <p style="color:black" (click)="getSinglePost(post.id)"> {{post.content}} </p>
+
+          <ng-template pTemplate="footer" *ngIf="checkTokenForAdmin">
+            <button pButton pRipple type="button" label="Update" class="p-button-raised"></button>
+            <button pButton pRipple type="button" label="Delete" class="p-button-raised p-button-danger ml-4"></button>
+        </ng-template>
         </p-card>
       </div>
     </div>

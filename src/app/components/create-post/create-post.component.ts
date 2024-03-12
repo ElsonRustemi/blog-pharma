@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class CreatePostComponent implements OnInit {
 
   postForm: FormGroup;
   img: any;
+  private tokenExpirationSubscription: Subscription;
 
   constructor(private fb: FormBuilder, private apiService: ApiService, private http: HttpClient, private messageService: MessageService) {
     this.postForm = this.fb.group({
@@ -23,6 +25,11 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // const test = this.apiService.checkTokenOfUser();
+    // console.log(test);
+
+    this.tokenHasExpired();
+
   }
 
   onBasicUploadAuto(event) {
@@ -88,6 +95,24 @@ export class CreatePostComponent implements OnInit {
       }
       console.log(result);
     });
+  }
+
+  tokenHasExpired() {
+    this.tokenExpirationSubscription = this.apiService.getTokenRemainingTime().subscribe(
+      (remainingTime) => {
+        // Update UI or perform actions based on the remaining time
+        // console.log(`Token expires in ${remainingTime / 1000} seconds`);
+
+        if (remainingTime <= 0) {
+          // Token has expired, perform necessary actions
+          console.log('Token has expired');
+          this.apiService.logout();
+        }
+      },
+      (error) => {
+        console.error('Error checking token expiration:', error);
+      }
+    );
   }
 
 }
