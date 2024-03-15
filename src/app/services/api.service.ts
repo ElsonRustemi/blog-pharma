@@ -74,7 +74,6 @@ export class ApiService {
         if (this.token) {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login successful' });
         }
-        console.log(this.token);
 
         this.jtwToken$.next(this.token);
         localStorage.setItem("act", this.token);
@@ -125,8 +124,16 @@ export class ApiService {
     return this.http.post(`${this.API_URL}/posts`, formData);
   }
 
+  updatePost(id: number, body: any) {
+    return this.http.put(`${this.API_URL}/posts/${id}`, body);
+  }
+
   getImageUrl() {
     return `${this.API_URL}/posts/upload-photo`; // Update the URL based on your backend
+  }
+
+  deletePost(id: number) {
+    return this.http.delete(`${this.API_URL}/posts/${id}`);
   }
 
 }

@@ -22,9 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(value) {
-    // console.log(value);
     this.apiService.login(value.username, value.password);
-
   }
 
 

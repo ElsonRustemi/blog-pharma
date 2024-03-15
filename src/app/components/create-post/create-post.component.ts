@@ -25,15 +25,12 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // const test = this.apiService.checkTokenOfUser();
-    // console.log(test);
 
     this.tokenHasExpired();
 
   }
 
   onBasicUploadAuto(event) {
-    console.log(event);
     if (event && event.currentFiles && event.currentFiles.length > 0) {
       const file = event.currentFiles[0]; // Get the first file from currentFiles array
       const objectURL = file.objectURL?.changingThisBreaksApplicationSecurity; // Extract the objectURL
@@ -63,7 +60,6 @@ export class CreatePostComponent implements OnInit {
         (response) => {
           console.log('File uploaded successfully:', response);
           this.img = response;
-          console.log(this.img);
 
           // Handle the response from the server
         },
@@ -90,10 +86,9 @@ export class CreatePostComponent implements OnInit {
 
     this.apiService.createPost(body).subscribe((result) => {
       if (result) {
-        this.messageService.add({key: 'myKey1', severity:'success', summary: 'Success', detail: 'Post created successfully'});
+        this.messageService.add({key: 'postCreated', severity:'success', summary: 'Success', detail: 'Post created successfully'});
         this.postForm.reset();
       }
-      console.log(result);
     });
   }
 

@@ -20,7 +20,6 @@ export class NewsComponent implements OnInit {
     try {
       this.healthNewsArr = [];
       const data = await this.healthNews.getHeathNews().toPromise();
-      console.log(data);
       data.articles.map(element => {
         if(element.content !== '[Removed]') {
           this.healthNewsArr.push(element);

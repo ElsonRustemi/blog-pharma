@@ -17,7 +17,6 @@
       <input pInputText id="firstname6" type="text" class="w-full" placeholder="Add title" formControlName="title">
     </div>
     <div class="field col-12 md:col-6">
-
         <input type="file" (change)="uploadFile($event.target.files[0])">
     </div>
     <div class="field col-12">
@@ -34,4 +33,4 @@
 
 <app-footer></app-footer>
 
-<p-toast key="myKey1" position="bottom-right"></p-toast>
+<p-toast key="postCreated" position="bottom-right"></p-toast>
