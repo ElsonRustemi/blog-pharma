@@ -20,7 +20,7 @@ export class SinglePostComponent implements OnInit {
 
   getSinglePost() {
     return this.apiSevice.getSinglePostObject.subscribe( singlePost => {
-      this.singlePost = singlePost
+      this.singlePost = singlePost;
     })
   }
 
