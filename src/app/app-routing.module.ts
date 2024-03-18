@@ -21,9 +21,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'create-posts', component: CreatePostComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  // , canActivate: [AuthGuard]
-  { path: 'signlePost', component: SinglePostComponent },
-
+  { path: 'post/:id', component: SinglePostComponent },
 ];
 
 @NgModule({

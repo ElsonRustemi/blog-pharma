@@ -14,7 +14,6 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class PostsComponent implements OnInit, OnDestroy {
 
-  posts: any[] = [];
   postsBe: any[] = [];
   img: any;
   updatePostForm: FormGroup;
@@ -34,7 +33,6 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   items: MenuItem[];
   sub$: Subject<any> = new Subject();
-  singlePost$: Subject<any> = new Subject();
   deletePost$: Subject<any> = new Subject();
   private tokenExpirationSubscription: Subscription;
   previewImageSrc: string | ArrayBuffer | null = null;
@@ -46,7 +44,26 @@ export class PostsComponent implements OnInit, OnDestroy {
     private router: Router,
     private messageService: MessageService,
     private fb: FormBuilder,
-    private http: HttpClient) { }
+    private http: HttpClient) {
+      this.items = [
+        {
+          label: 'Health',
+          // icon: 'pi pi-heart',
+        },
+        {
+          label: 'Skin Care',
+          // icon: 'pi pi-fw pi-pencil',
+        },
+        {
+          label: 'Fitness',
+          // icon: 'pi pi-fw pi-question',
+        },
+        {
+          label: 'Beauty',
+          // icon: 'pi pi-fw pi-cog',
+        }
+      ];
+    }
 
   ngOnInit(): void {
 
@@ -63,46 +80,10 @@ export class PostsComponent implements OnInit, OnDestroy {
       this.checkTokenForAdmin = true;
     }
 
-    this.posts = [
-      { header: 'Post 1', content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!" },
-      { header: 'Post 2', content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!" },
-      { header: 'Post 3', content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!" },
-      { header: 'Post 4', content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt       quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!" },
-      { header: 'Post 5', content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!" },
-    ]
-
-    this.items = [
-      {
-        label: 'Health',
-        // icon: 'pi pi-heart',
-      },
-      {
-        label: 'Skin Care',
-        // icon: 'pi pi-fw pi-pencil',
-      },
-      {
-        label: 'Fitness',
-        // icon: 'pi pi-fw pi-question',
-      },
-      {
-        label: 'Beauty',
-        // icon: 'pi pi-fw pi-cog',
-      }
-    ];
   }
 
-
-  /**
-   *
-   * @param id
-   */
-  getSinglePost(id) {
-    this.apiService.getSinglePost(id).pipe(
-      takeUntil(this.singlePost$)
-    ).subscribe(result => {
-      this.apiService.setPostBody(result);
-      this.router.navigateByUrl('/signlePost');
-    })
+  goToSinglePost(postId: string) {
+    this.router.navigate(['/post', postId]);
   }
 
   /**
@@ -261,9 +242,6 @@ export class PostsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub$.next();
     this.sub$.complete();
-
-    this.singlePost$.next();
-    this.singlePost$.complete();
 
     this.deletePost$.next();
     this.deletePost$.complete();

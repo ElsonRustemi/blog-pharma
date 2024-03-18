@@ -15,9 +15,6 @@ export class ApiService {
   private jtwToken$ = new BehaviorSubject<string>(this.token);
   private API_URL = 'http://localhost:3000';
 
-  private singlePost = new BehaviorSubject("");
-  getSinglePostObject = this.singlePost.asObservable();
-
   constructor(private http: HttpClient, private router: Router, private messageService: MessageService) {
     const fetchedToken: string = localStorage.getItem("act");
 
@@ -55,10 +52,6 @@ export class ApiService {
    */
   getSinglePost(id: number): Observable<any> {
     return this.http.get(`${this.API_URL}/posts/${id}`)
-  }
-
-  setPostBody(singlePost: any) {
-    this.singlePost.next(singlePost);
   }
 
   /**

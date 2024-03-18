@@ -26,7 +26,7 @@
           <ng-template pTemplate="header">
             <img alt="Card" [src]="post.imagePath">
           </ng-template>
-          <p style="color:black" (click)="getSinglePost(post.id)"> {{post.content | truncate:50}} </p>
+          <p style="color:black" (click)="goToSinglePost(post.id)"> {{post.content | truncate:50}} </p>
 
           <ng-template pTemplate="footer" *ngIf="checkTokenForAdmin">
             <button pButton pRipple type="button" label="Update" class="p-button-raised" (click)="displayUpldateModal=true; setFormValue(post)"></button>
