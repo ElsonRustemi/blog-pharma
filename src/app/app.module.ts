@@ -18,6 +18,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {FileUploadModule} from 'primeng/fileupload';
 import {ToastModule} from 'primeng/toast';
 import {DialogModule} from 'primeng/dialog';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
@@ -71,7 +72,8 @@ import { SinglePostComponent } from './components/single-post/single-post.compon
     FileUploadModule,
     ReactiveFormsModule,
     ToastModule,
-    DialogModule
+    DialogModule,
+    DropdownModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

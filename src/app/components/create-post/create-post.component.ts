@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import { Category } from 'src/app/interfaces/category';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -16,12 +17,22 @@ export class CreatePostComponent implements OnInit {
   img: any;
   private tokenExpirationSubscription: Subscription;
 
+  categories: Category[];
+  selectedCategory: Category;
+
   constructor(private fb: FormBuilder, private apiService: ApiService, private http: HttpClient, private messageService: MessageService) {
     this.postForm = this.fb.group({
       title: [],
       content: [],
       image: []
     })
+
+    this.categories = [
+      { name: 'Health', code: 'HE' },
+      { name: 'Skin Care', code: 'SC' },
+      { name: 'Fitness', code: 'FI' },
+      { name: 'Beauty', code: 'BE' }
+    ];
   }
 
   ngOnInit(): void {
@@ -78,11 +89,15 @@ export class CreatePostComponent implements OnInit {
    */
   onSubmitPost(value) {
 
+    let categoryName = this.selectedCategory.name
+
     const body = {
       title: value.title,
       content: value.content,
+      category: categoryName,
       imagePath: this.img.filePath
     }
+    console.log(body);
 
     this.apiService.createPost(body).subscribe((result) => {
       if (result) {

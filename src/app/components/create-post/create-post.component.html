@@ -17,6 +17,9 @@
       <input pInputText id="firstname6" type="text" class="w-full" placeholder="Add title" formControlName="title">
     </div>
     <div class="field col-12 md:col-6">
+      <p-dropdown [options]="categories" [(ngModel)]="selectedCategory" optionLabel="name" [ngModelOptions]="{standalone: true}"></p-dropdown>
+    </div>
+    <div class="field col-12 md:col-6">
         <input type="file" (change)="uploadFile($event.target.files[0])">
     </div>
     <div class="field col-12">
