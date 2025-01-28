@@ -49,18 +49,30 @@ export class PostsComponent implements OnInit, OnDestroy {
         {
           label: 'Health',
           // icon: 'pi pi-heart',
+          command: () => {
+            console.log("Health");
+          }
         },
         {
           label: 'Skin Care',
           // icon: 'pi pi-fw pi-pencil',
+          command: () => {
+            console.log("Skin Care");
+          }
         },
         {
           label: 'Fitness',
           // icon: 'pi pi-fw pi-question',
+          command: () => {
+            console.log("Fitness");
+          }
         },
         {
           label: 'Beauty',
           // icon: 'pi pi-fw pi-cog',
+          command: () => {
+            console.log("Beauty");
+          }
         }
       ];
     }
