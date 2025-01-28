@@ -1,10 +1,41 @@
 .footer{
+  display: flex;
+  justify-content: space-between;
   flex-shrink: 0;
   flex-grow: 0;
   background: #40A2D8;
   padding: 35px 15px;
 }
 
+.footer-title {
+  display: flex;
+  align-items: center;
+}
+
 :host ::ng-deep .svg-inline--fa.fa-w-16 {
   color: white;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .footer {
+    display:grid;
+    justify-content: center;
+  }
+
+  .footer-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-elements {
+    display: grid;
+    justify-content: center;
+  }
+
+  .social-media {
+    display: grid;
+    justify-content: center;
+  }
+
 }
