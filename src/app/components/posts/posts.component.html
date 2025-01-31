@@ -9,8 +9,8 @@
   <div style="border-bottom: 2px solid #40A2D8; width: 400px; height: 45px;"></div>
 </div>
 
-<!-- <div class="grid nested-grid"> -->
-<!-- <div class="flex justify-content-center">
+
+<div class="flex justify-content-center">
   <div class="col-10">
     <div class="grid">
       <div class="col flex justify-content-center" *ngFor="let post of paginatedPosts;" style="cursor: pointer;">
@@ -23,34 +23,8 @@
           <ng-template pTemplate="footer" *ngIf="checkTokenForAdmin">
             <button pButton pRipple type="button" label="Update" class="p-button-raised" (click)="displayUpldateModal=true; setFormValue(post)"></button>
             <button pButton pRipple type="button" label="Delete" class="p-button-raised p-button-danger ml-4" (click)="confirmDeleteModal=true; deletePostId=post.id; postTitle=post.title;"></button>
-            <button class="btn btn-error" (click)="deletePostId=post.id; postTitle=post.title;">Error</button>
         </ng-template>
         </p-card>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<div class="grid nested-grid">
-  <div class="flex justify-center">
-    <div class="col-10">
-      <div class="grid">
-        <div class="col flex justify-content-center" *ngFor="let post of paginatedPosts;" style="cursor: pointer;">
-          <div class="card glass w-96">
-            <figure>
-              <img [src]="post.imagePath" alt="car!" />
-            </figure>
-            <div class="card-body">
-              <h2 class="card-title">{{post.title}}</h2>
-              <p style="color:black" (click)="goToSinglePost(post.id)"> {{post.content | truncate:50}} </p>
-              <div class="card-actions justify-end">
-                <!-- <button pButton pRipple type="button" label="Update" class="p-button-raised" (click)="displayUpldateModal=true; setFormValue(post)"></button> -->
-                <button class="btn btn-success" (click)="displayUpldateModal=true; setFormValue(post);">Success</button>
-                <button class="btn btn-error" (click)="deletePostId=post.id; postTitle=post.title; my_modal_5.showModal();">Delete</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -66,43 +40,23 @@
     <button class="ml-2" pButton (click)="goToPage(currentPage + 1)" [disabled]="currentPage === getPageArray().length" label="Next"></button>
   </div>
 </div>
-<!-- <div>
-
-</div> -->
 
 <app-footer></app-footer>
 
 
-<!-- <p-dialog header="Delete Post" [(visible)]="confirmDeleteModal" [style]="{width: '50vw'}" [baseZIndex]="10000">
+<p-dialog header="Delete Post" [(visible)]="confirmDeleteModal" [style]="{width: '50vw'}" [baseZIndex]="10000">
   <p>Are you sure you want to delete post <strong>'{{postTitle}}'</strong> ?</p>
   <ng-template pTemplate="footer">
       <button pButton pRipple type="button" label="Delete" class="p-button-raised p-button-danger" (click)="deletePost()"></button>
-      <button pButton pRipple type="button" label="Cancel" class="p-button-raised p-button-secondary" (click)="confirmDelete=false"></button>
+      <button pButton pRipple type="button" label="Cancel" class="p-button-raised p-button-secondary" (click)="confirmDeleteModal=false"></button>
   </ng-template>
-</p-dialog> -->
-
-<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <h3 class="text-lg font-bold">Are you sure you want to delete post <strong>'{{postTitle}}'</strong> ?</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    <div class="modal-action">
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button class="btn btn-error" (click)="deletePost();">Error</button>
-        <button class="btn">Close</button>
-      </form>
-    </div>
-  </div>
-</dialog>
-
-
+</p-dialog>
 
 <p-dialog header="Update Post" [(visible)]="displayUpldateModal" [style]="{width: '80vw'}" [baseZIndex]="10000">
 
   <form action="" [formGroup]="updatePostForm" (ngSubmit)="updatePostForm.value">
     <div class="formgrid grid">
       <div class="field col-12 md:col-6">
-        <!-- <label for="" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: unset;">Title</label> -->
         <div>
           <input pInputText type="text" formControlName="title" placeholder="Title">
         </div>
@@ -112,9 +66,6 @@
 
       </div>
       <div class="field col-12 md:col-6">
-        <!-- <label for="" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: unset;">Image</label> -->
-        <!-- <input class="mb-2" type="file" (change)="uploadFile($event.target.files[0])">
-        <img *ngIf="!img" class="mb-2" [src]="previewImgPost" alt="Image not displayed" style="width: 500px;"> -->
         <input type="file" (change)="onFileSelected($event)" />
           <img *ngIf="!previewImageSrc" [src]="previewImgPost" alt="Preview" style="width: 500px;" />
         <img *ngIf="previewImageSrc" [src]="previewImageSrc" alt="Preview" style="width: 500px;" />
@@ -124,8 +75,6 @@
         </div>
 
       </div>
-      <!-- <div class="field col-12">
-      </div> -->
     </div>
   </form>
 
